@@ -9,10 +9,6 @@ export default function home() {
         router.navigate("/crud/create");
     }
 
-    const goToDelete = () => {
-        router.navigate("/crud/deletePet");
-    }
-
     const goToList = () => {
         router.navigate("/crud/list");
     }
@@ -22,9 +18,8 @@ export default function home() {
     }
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', padding: 16 }}>
+    <View style={{ flex: 1, justifyContent: 'center', padding: 16, gap: 6}}>
       <Button title='Criar Pet' onPress={goToCreate}></Button>
-      <Button title='Deletar Pet' onPress={goToDelete}></Button>
       <Button title='Listar Pet' onPress={goToList}></Button>
       <Button title='Editar Pet' onPress={goToEdit}></Button>
     </View>

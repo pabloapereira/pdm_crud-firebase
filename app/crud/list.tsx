@@ -4,7 +4,6 @@ import useCollection from "../../firebase/hooks/useCollection";
 import { FlatList } from "react-native-gesture-handler";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
-import DeletePet from "./deletePet";
 import { router, useRouter } from "expo-router";
 
 type Pet = {
@@ -15,7 +14,7 @@ type Pet = {
 };
 
 export default function list() {
-  const { data } = useCollection<Pet>("pets");
+  const { data, remove, refreshData } = useCollection<Pet>("pets");
   const router = useRouter();
 
   const voltarHome = () => {
@@ -36,10 +35,14 @@ export default function list() {
           data={data}
           renderItem={({ item }) => (
             <View>
-              <Text>ID: {item.id} </Text>
+              <Text style={{marginTop: 30}}>ID: {item.id} </Text>
               <Text>ID: {item.name} </Text>
               <Text>ID: {item.type} </Text>
               <Text>ID: {item.age} </Text>
+              <Button title="deletar" onPress={ async () => {
+                await remove(item.id!);
+                await refreshData();
+              }}></Button>
             </View>
           )}
         />
